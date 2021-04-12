@@ -71,32 +71,53 @@ require __DIR__ . '/header.php'; // подключаем шапку проект
 <?php require __DIR__ . '/footer.php'; ?> <!-- Подключаем подвал проекта -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script language="JavaScript">
-    document.querySelector('#delete').onclick = function() {
+
+
+    document.querySelector('#block').onclick = function() {
         let rows = document.querySelectorAll(".row-table");
         rows.forEach(function(row) {
             if(row.querySelector(".form-check-input").checked) {
                 let userID = row.querySelector(".user_id").innerHTML;
-                console.log(userID);
                 $.ajax({
                     url: "index.php",
                     type: "POST",
                     data: {userID:userID}
                 });
                 <?php
-                $uid1 = 0;
-                if(isset($_POST['userID'])) :
+                if(isset($_POST['userID'])) {
                     $uid = $_POST['userID'];
-                    $us = R::load('ex4', $uid);
-                    $uid1 = $uid;
-                $deletegame = R::exec('DELETE  FROM `users` WHERE id = ? ',[$uid]);
-                    R::trash($deletegame); //удаляем запись с id=2 из таблицы category
-                    ?>
-                    console.log("<?php echo $uid1; ?>");
-                <?php endif; ?>
+                    $user = R::findOne('users', 'id = ?', array($uid));
+                    $user->status = "blocked";
+                    R::store($user);
+                }
+                ?>
             }
         });
 
     };
+
+    document.getElementById('delete').onclick = function() {
+        let rows = document.querySelectorAll(".row-table");
+        rows.forEach(function(row) {
+            if(row.querySelector(".form-check-input").checked) {
+                let userID = row.querySelector(".user_id").innerHTML;
+                let delUs = "delete";
+                $.ajax({
+                    url: "index.php",
+                    type: "POST",
+                    data: {userID:userID, delUs:delUs}
+                });
+                <?php
+                if(isset($_POST['userID']) && isset($_POST['delUs']) && delUs == "delete") {
+                    $uid = $_POST['userID'];
+                    $deletegame = R::exec('DELETE FROM `users` WHERE id = ? ', [$uid]);
+                    R::trash($deletegame); //удаляем запись с id=2 из таблицы category
+                }?>
+            }
+        });
+
+    };
+
     document.getElementById('select-all').onclick = function() {
         var checkboxes = document.getElementsByName('user');
         for (var checkbox of checkboxes) {
