@@ -7,7 +7,9 @@ if(isset($data['do_login'])) {
     $errors = array();
     $user = R::findOne('users', 'login = ?', array($data['login']));
     if($user) {
-        if(password_verify($data['password'], $user->password)) {
+        if ($user->status == "blocked") {
+            $errors[] = 'Упс... вы заблокированы((';
+        }else if(password_verify($data['password'], $user->password)) {
             $user->last_login = date('d.m.Y H:i');
             $user->status = "online";
             R::store($user);
@@ -15,7 +17,7 @@ if(isset($data['do_login'])) {
 //            echo '<div style="color: green; ">Вы успешно зарегистрированы! Можно <a href="index.php">main</a>.</div><hr>';
 
             exit("<meta http-equiv='refresh' content='0; url= /index.php'>");
-        } else {
+        }  else {
             $errors[] = 'Пароль неверно введен!';
         }
     } else {
