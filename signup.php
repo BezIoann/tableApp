@@ -45,6 +45,7 @@ if(isset($data['do_signup'])) {
         $user["reg_date"] = date('d.m.Y H:i');
         $user["last_login"] = date('d.m.Y H:i');
         $user["password"] = password_hash($data['password'], PASSWORD_DEFAULT);
+        dmp( $user );
         $id = R::store( $user );
 //        $conn->close();
         echo '<div class="alert alert-success" role="alert">You are registered successfully! <a href="login.php">log in</a>.</div><hr>';
