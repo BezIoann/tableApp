@@ -7,7 +7,9 @@ if(isset($data['do_login'])) {
     R::debug(true);
     $login = $data['login'];
     echo $login;
-    $user = R::findOne('users', 'login = ?', "$login");
+    $query = "SELECT * FROM `users` WHERE `login` = '$login'";
+    $user = mysqli_query($query, $conn );
+//    $user = R::findOne('users', 'login = ?', "$login");
     echo $user;
     if($user) {
         if ($user["status"] == "blocked") {
