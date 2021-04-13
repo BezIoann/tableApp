@@ -5,7 +5,8 @@ $data = $_POST;
 if(isset($data['do_login'])) {
     $errors = array();
     R::debug(true);
-    $user = R::findOne('users', 'login = ?', array($data['login']));
+    $login = $data['login'];
+    $user = R::findOne('users', 'login = ?', "$login");
     if($user) {
         if ($user->status == "blocked") {
             $errors[] = "Oops ... you're blocked ((";
