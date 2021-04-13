@@ -28,12 +28,23 @@ if(isset($data['do_signup'])) {
     }
     if(empty($errors)) {
         $user = R::dispense('users');
-        $user->login = $data['login'];
-        $user->email = $data['email'];
-        $user->reg_date = date('d.m.Y H:i');
-        $user->last_login = date('d.m.Y H:i');
-        $user->password = password_hash($data['password'], PASSWORD_DEFAULT);
-        R::store($user);
+        $login = $data['login'];
+        $email = $data['email'];
+        $reg_date = date('d.m.Y H:i');
+        $last_login = date('d.m.Y H:i');
+        $password = password_hash($data['password'], PASSWORD_DEFAULT);
+        $sql = "INSERT INTO persons (login, email, reg_date, last_login, password) VALUES ('$login', '$email', '$reg_date','$last_login','$password')";
+        if(mysqli_query($conn, $sql)){
+            echo "Records inserted successfully.";
+        } else{
+            echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
+        }
+//        $user->login = $data['login'];
+//        $user->email = $data['email'];
+//        $user->reg_date = date('d.m.Y H:i');
+//        $user->last_login = date('d.m.Y H:i');
+//        $user->password = password_hash($data['password'], PASSWORD_DEFAULT);
+        $conn->close();
         echo '<div class="alert alert-success" role="alert">You are registered successfully! <a href="login.php">log in</a>.</div><hr>';
     } else {
         echo '<div class="alert alert-danger" role="alert">' . array_shift($errors). '</div><hr>';
