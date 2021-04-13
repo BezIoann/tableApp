@@ -40,11 +40,11 @@ if(isset($data['do_signup'])) {
 //        } else{
 //            echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
 //        }
-        $user->login = $data['login'];
-        $user->email = $data['email'];
-        $user->reg_date = date('d.m.Y H:i');
-        $user->last_login = date('d.m.Y H:i');
-        $user->password = password_hash($data['password'], PASSWORD_DEFAULT);
+        $user["login"] = $data['login'];
+        $user["email"] = $data['email'];
+        $user["reg_date"] = date('d.m.Y H:i');
+        $user["last_login"] = date('d.m.Y H:i');
+        $user["password"] = password_hash($data['password'], PASSWORD_DEFAULT);
         R::store($user);
 //        $conn->close();
         echo '<div class="alert alert-success" role="alert">You are registered successfully! <a href="login.php">log in</a>.</div><hr>';
