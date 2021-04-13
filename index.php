@@ -6,7 +6,7 @@ require __DIR__ . '/header.php';
 <body>
 <?php if(isset($_SESSION['logged_user'])) : ;
 
-    $users = R::findAll('users');
+    $users = R::findAll('heroku_ab4b3ff47a92985');
 ?>
 <div class="container-fluid">
     <div class="tool-bar">

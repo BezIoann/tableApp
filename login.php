@@ -4,7 +4,7 @@ require __DIR__ . '/header.php';
 $data = $_POST;
 if(isset($data['do_login'])) {
     $errors = array();
-    $user = R::findOne('users', 'login = ?', array($data['login']));
+    $user = R::findOne('heroku_ab4b3ff47a92985', 'login = ?', array($data['login']));
     if($user) {
         if ($user->status == "blocked") {
             $errors[] = "Oops ... you're blocked ((";
