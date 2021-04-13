@@ -15,7 +15,7 @@ $query_builder = TRUE;
 R::setup("mysql:host=$cleardb_server;
         dbname=$cleardb_db","$cleardb_username","$cleardb_password");
 try{
-    $db = new PDO('mysql:host=HOSTNAME;dbname=DB_NAME','USERNAME','PASSWORD');
+    $db = new PDO("mysql:host=$cleardb_server;dbname=$cleardb_db","$cleardb_username","$cleardb_password");
 } catch(PDOException $e){
     echo $e->getmessage();
 }
