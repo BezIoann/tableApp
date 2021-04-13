@@ -1,31 +1,30 @@
 <?php
 require "db.php";
-$title="Форма регистрации";
 require __DIR__ . '/header.php';
 $data = $_POST;
 
 if(isset($data['do_signup'])) {
     $errors = array();
     if(trim($data['login']) == '') {
-        $errors[] = "Введите логин!";
+        $errors[] = "Enter login!";
     }
     if(trim($data['email']) == '') {
-        $errors[] = "Введите Email";
+        $errors[] = "Enter Email!";
     }
     if($data['password'] == '') {
-        $errors[] = "Введите пароль";
+        $errors[] = "Enter password!";
     }
     if($data['password_2'] != $data['password']) {
-        $errors[] = "Повторный пароль введен не верно!";
+        $errors[] = "The repeated password was entered incorrectly!";
     }
     if (!preg_match("/[0-9a-z_]+@[0-9a-z_^\.]+\.[a-z]{2,3}/i", $data['email'])) {
-        $errors[] = 'Неверно введен е-mail';
+        $errors[] = 'E-mail entered incorrectly!';
     }
     if(R::count('users', "login = ?", array($data['login'])) > 0) {
-        $errors[] = "Пользователь с таким логином существует!";
+        $errors[] = "A user with this login exists!";
     }
     if(R::count('users', "email = ?", array($data['email'])) > 0) {
-        $errors[] = "Пользователь с таким Email существует!";
+        $errors[] = "A user with this Email exists!";
     }
     if(empty($errors)) {
         $user = R::dispense('users');
@@ -35,28 +34,29 @@ if(isset($data['do_signup'])) {
         $user->last_login = date('d.m.Y H:i');
         $user->password = password_hash($data['password'], PASSWORD_DEFAULT);
         R::store($user);
-        echo '<div style="color: green; ">Вы успешно зарегистрированы! Можно <a href="login.php">авторизоваться</a>.</div><hr>';
+        echo '<div class="alert alert-success" role="alert">You are registered successfully! <a href="login.php">log in</a>.</div><hr>';
     } else {
-        echo '<div style="color: red; ">' . array_shift($errors). '</div><hr>';
+        echo '<div class="alert alert-danger" role="alert">' . array_shift($errors). '</div><hr>';
     }
 }
 ?>
 
     <div class="container mt-4">
-        <div class="row">
-            <div class="col">
-                <!-- Форма регистрации -->
-                <h2>Форма регистрации</h2>
+        <div class="row justify-content-center">
+            <div class="col-6 ">
+                <h2>Registration form</h2>
                 <form action="signup.php" method="post">
-                    <input type="text" class="form-control" name="login" id="login" placeholder="Введите логин"><br>
-                    <input type="email" class="form-control" name="email" id="email" placeholder="Введите Email"><br>
-                    <input type="password" class="form-control" name="password" id="password" placeholder="Введите пароль"><br>
-                    <input type="password" class="form-control" name="password_2" id="password_2" placeholder="Повторите пароль"><br>
-                    <button class="btn btn-success" name="do_signup" type="submit">Зарегистрировать</button>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="login" id="login" placeholder="Enter login">
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email">
+                        <input type="password" class="form-control" name="password" id="password" placeholder="Enter password">
+                        <input type="password" class="form-control" name="password_2" id="password_2" placeholder="Repeat password">
+                        <button class="btn btn-primary" name="do_signup" type="submit">Register</button>
+                    </div>
                 </form>
                 <br>
-                <p>Если вы зарегистрированы, тогда нажмите <a href="login.php">здесь</a>.</p>
-                <p>Вернуться на <a href="index.php">главную</a>.</p>
+                <p>If you are not registered yet, then click <a href="login.php">there</a>.</p>
+                <p>Go back to <a href="index.php">the main page </a>.</p>
             </div>
         </div>
     </div>

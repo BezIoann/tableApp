@@ -1,0 +1,25 @@
+
+.tool-bar {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    align-items: center;
+}
+.reg-log {
+    margin-top: 40vh;
+    justify-content: center;}
+.reg-log a {
+    max-width: 300px;
+}
+.form-group input {
+    margin-bottom: 10px;
+}
+tr th, td {
+    text-align: center;
+}
+.select-all {
+    justify-self: left;
+}
+.logout {
+    
+}
