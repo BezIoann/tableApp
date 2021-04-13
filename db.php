@@ -10,6 +10,13 @@ $active_group = 'default';
 $query_builder = TRUE;
 // Connect to DB
 //$conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+//R::setup( 'mysql:host=localhost;dbname=mydatabase',
+//    'user', 'password' );
 R::setup("mysql:host=$cleardb_server;
         dbname=$cleardb_db","$cleardb_username","$cleardb_password");
+try{
+    $db = new PDO('mysql:host=HOSTNAME;dbname=DB_NAME','USERNAME','PASSWORD');
+} catch(PDOException $e){
+    echo $e->getmessage();
+}
 ?>
