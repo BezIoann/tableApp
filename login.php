@@ -6,7 +6,9 @@ if(isset($data['do_login'])) {
     $errors = array();
     R::debug(true);
     $login = $data['login'];
+    echo $login;
     $user = R::findOne('users', 'login = ?', "$login");
+    echo $user;
     if($user) {
         if ($user->status == "blocked") {
             $errors[] = "Oops ... you're blocked ((";
