@@ -27,24 +27,25 @@ if(isset($data['do_signup'])) {
         $errors[] = "A user with this Email exists!";
     }
     if(empty($errors)) {
+        R::debug(true);
         $user = R::dispense('users');
-        $login = $data['login'];
-        $email = $data['email'];
-        $reg_date = date('d.m.Y H:i');
-        $last_login = date('d.m.Y H:i');
-        $password = password_hash($data['password'], PASSWORD_DEFAULT);
-        $sql = "INSERT INTO users (login, email, reg_date, last_login, password) VALUES ('$login', '$email', '$reg_date','$last_login','$password')";
-        if(mysqli_query($conn, $sql)){
-            echo "Records inserted successfully.";
-        } else{
-            echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
-        }
-//        $user->login = $data['login'];
-//        $user->email = $data['email'];
-//        $user->reg_date = date('d.m.Y H:i');
-//        $user->last_login = date('d.m.Y H:i');
-//        $user->password = password_hash($data['password'], PASSWORD_DEFAULT);
-        $conn->close();
+//        $login = $data['login'];
+//        $email = $data['email'];
+//        $reg_date = date('d.m.Y H:i');
+//        $last_login = date('d.m.Y H:i');
+//        $password = password_hash($data['password'], PASSWORD_DEFAULT);
+//        $sql = "INSERT INTO users (login, email, reg_date, last_login, password) VALUES ('$login', '$email', '$reg_date','$last_login','$password')";
+//        if(mysqli_query($conn, $sql)){
+//            echo "Records inserted successfully.";
+//        } else{
+//            echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
+//        }
+        $user->login = $data['login'];
+        $user->email = $data['email'];
+        $user->reg_date = date('d.m.Y H:i');
+        $user->last_login = date('d.m.Y H:i');
+        $user->password = password_hash($data['password'], PASSWORD_DEFAULT);
+//        $conn->close();
         echo '<div class="alert alert-success" role="alert">You are registered successfully! <a href="login.php">log in</a>.</div><hr>';
     } else {
         echo '<div class="alert alert-danger" role="alert">' . array_shift($errors). '</div><hr>';

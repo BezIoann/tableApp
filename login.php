@@ -4,6 +4,7 @@ require __DIR__ . '/header.php';
 $data = $_POST;
 if(isset($data['do_login'])) {
     $errors = array();
+    R::debug(true);
     $user = R::findOne('users', 'login = ?', array($data['login']));
     if($user) {
         if ($user->status == "blocked") {
