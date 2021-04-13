@@ -33,7 +33,7 @@ if(isset($data['do_signup'])) {
         $reg_date = date('d.m.Y H:i');
         $last_login = date('d.m.Y H:i');
         $password = password_hash($data['password'], PASSWORD_DEFAULT);
-        $sql = "INSERT INTO persons (login, email, reg_date, last_login, password) VALUES ('$login', '$email', '$reg_date','$last_login','$password')";
+        $sql = "INSERT INTO users (login, email, reg_date, last_login, password) VALUES ('$login', '$email', '$reg_date','$last_login','$password')";
         if(mysqli_query($conn, $sql)){
             echo "Records inserted successfully.";
         } else{
