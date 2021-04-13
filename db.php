@@ -1,5 +1,4 @@
 <?php
-
 //Get Heroku ClearDB connection information
 $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 $cleardb_server = $cleardb_url["host"];
@@ -13,10 +12,4 @@ $query_builder = TRUE;
 require "libs/rb-mysql.php";
 R::setup("mysql:host=$cleardb_server;
         dbname=$cleardb_db","$cleardb_username","$cleardb_password");
-
-if(!R::testConnection()) die('No DB connection!v2');
-session_start();
-
-/* Heroku remote server */
-
 ?>
