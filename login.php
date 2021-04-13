@@ -13,9 +13,9 @@ if(isset($data['do_login'])) {
         if ($user["status"] == "blocked") {
             $errors[] = "Oops ... you're blocked ((";
         }else if(password_verify($data['password'], $user["password"])) {
-            $user["last_login"] = date('d.m.Y H:i');
-            $user["status"] = "online";
-            R::store($user);
+//            $user["last_login"] = date('d.m.Y H:i');
+//            $user["status"] = "online";
+//            R::store($user);
             $_SESSION['logged_user'] = $user;
             exit("<meta http-equiv='refresh' content='0; url= /index.php'>");
         }  else {
