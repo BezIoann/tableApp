@@ -15,13 +15,12 @@ $query_builder = TRUE;
 R::setup("mysql:host=$cleardb_server;
         dbname=$cleardb_db","$cleardb_username","$cleardb_password");
 
-$post = R::dispense('post');
-$post["title"] = "Hello, world";
-$post["content"] = "This is line one.";
+//$post = R::dispense('post');
+//$post["title"] = "Hello, world";
+//$post["content"] = "This is line one.";
+//
+//$id = R::store($post);
 
-$id = R::store($post);
-
-echo $id;
 try{
     $db = new PDO("mysql:host=$cleardb_server;dbname=$cleardb_db","$cleardb_username","$cleardb_password");
 } catch(PDOException $e){
