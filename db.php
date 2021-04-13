@@ -10,7 +10,7 @@ $query_builder = TRUE;
 // Connect to DB
 require 'rb-mysql.php';
 $conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, "heroku_ab4b3ff47a92985");
-require "libs/rb-mysql.php";
+//require "libs/rb-mysql.php";
 R::setup("mysql:host=$cleardb_server;
         dbname=$cleardb_db","$cleardb_username","$cleardb_password");
 ?>
