@@ -10,7 +10,7 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 // Connect to DB
-//$conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+$conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
 //R::setup( 'mysql:host=localhost;dbname=mydatabase',
 //    'user', 'password' );
 R::setup("mysql:host=$cleardb_server;
@@ -21,7 +21,10 @@ R::setup("mysql:host=$cleardb_server;
 //$post["content"] = "This is line one.";
 //
 //$id = R::store($post);
-
+if ( !R::testConnection() )
+{
+    exit ('Нет соединения с базой данных');
+}
 try{
     $db = new PDO("mysql:host=$cleardb_server;dbname=$cleardb_db","$cleardb_username","$cleardb_password");
 } catch(PDOException $e){
