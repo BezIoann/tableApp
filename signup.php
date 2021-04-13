@@ -1,4 +1,7 @@
 <?php
+
+use RedBeanPHP\RedException\SQL;
+
 require "db.php";
 require __DIR__ . '/header.php';
 $data = $_POST;
@@ -46,7 +49,12 @@ if(isset($data['do_signup'])) {
         $user["last_login"] = date('d.m.Y H:i');
         $user["password"] = password_hash($data['password'], PASSWORD_DEFAULT);
         dmp( $user );
-        $id = R::store( $user );
+        try {
+            $id = R::store($user);
+            echo $id;
+        } catch (SQL $e) {
+            echo $e;
+        }
 //        $conn->close();
         echo '<div class="alert alert-success" role="alert">You are registered successfully! <a href="login.php">log in</a>.</div><hr>';
     } else {
