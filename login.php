@@ -4,7 +4,6 @@ require __DIR__ . '/header.php';
 $data = $_POST;
 if(isset($data['do_login'])) {
     $errors = array();
-    R::debug(true);
     $login = $data['login'];
     echo $login;
     $query = "SELECT * FROM `users` WHERE `login` = '$login'";
