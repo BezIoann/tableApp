@@ -1,4 +1,6 @@
 <?php
+require_once "vendor/autoload.php";
+use \RedBeanPHP\R;
 ini_set('session.save_handler', 'memcached');
 ini_set('session.save_path', getenv('MEMCACHIER_SERVERS'));
 if(version_compare(phpversion('memcached'), '3', '>=')) {
@@ -25,9 +27,8 @@ $cleardb_password = $cleardb_url["pass"];
 $cleardb_db = substr($cleardb_url["path"],1);
 $active_group = 'default';
 $query_builder = TRUE;
-require_once "vendor/autoload.php";
-use \RedBeanPHP\R;
-R::setup( "mysql:host=$cleardb_server; dbname=$cleardb_db",
-    "$cleardb_username", "$cleardb_password" );
+
+R::setup( "mysql:host=eu-cdbr-west-01.cleardb.com; dbname=heroku_ab4b3ff47a92985",
+    "b11148a0327740", "d98dda68" );
 if(!R::testConnection()) die('No DB connection!');
 ?>
