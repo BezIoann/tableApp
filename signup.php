@@ -20,12 +20,12 @@ if(isset($data['do_signup'])) {
     if (!preg_match("/[0-9a-z_]+@[0-9a-z_^\.]+\.[a-z]{2,3}/i", $data['email'])) {
         $errors[] = 'E-mail entered incorrectly!';
     }
-    if(R::count('users', "login = ?", array($data['login'])) > 0) {
-        $errors[] = "A user with this login exists!";
-    }
-    if(R::count('users', "email = ?", array($data['email'])) > 0) {
-        $errors[] = "A user with this Email exists!";
-    }
+//    if(R::count('users', "login = ?", array($data['login'])) > 0) {
+//        $errors[] = "A user with this login exists!";
+//    }
+//    if(R::count('users', "email = ?", array($data['email'])) > 0) {
+//        $errors[] = "A user with this Email exists!";
+//    }
     if(empty($errors)) {
         $login = $data['login'];
         $email = $data['email'];
