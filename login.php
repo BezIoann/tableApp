@@ -11,9 +11,14 @@ if(isset($data['do_login'])) {
         if ($user->status == "blocked") {
             $errors[] = "Oops ... you're blocked ((";
         }else if(password_verify($data['password'], $user->password)) {
-            $user->last_login = date('d.m.Y H:i');
-            $user->status = "online";
-            R::store($user);
+            $last_login = date('d.m.Y H:i');
+            $status = "online";
+            $sql = "INSERT INTO users (last_login, status) VALUES ('$last_login', '$status' )";
+            if(mysqli_query($conn, $sql)){
+                echo "Records inserted successfully.";
+            } else{
+                echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
+            }
             $_SESSION['logged_user'] = $user;
             exit("<meta http-equiv='refresh' content='0; url= /index.php'>");
         }  else {
