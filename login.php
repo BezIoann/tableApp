@@ -29,7 +29,6 @@
         $login = $data['login'];
         $sql = "SELECT * from users where login = '$login'";
         $result = mysqli_query($sql);
-
         $user = mysqli_fetch_assoc($result);
         if($user) {
             if ($user["status"] == "blocked") {
