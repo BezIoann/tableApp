@@ -4,14 +4,21 @@ require __DIR__ . '/header.php';
 $data = $_POST;
 if(isset($data['do_login'])) {
     $errors = array();
+//    $sql = "SELECT * from users where username = '".$_SESSION['user']['username'] ."'";
+
     $user = R::findOne('users', 'login = ?', array($data['login']));
     if($user) {
         if ($user->status == "blocked") {
             $errors[] = "Oops ... you're blocked ((";
         }else if(password_verify($data['password'], $user->password)) {
-            $user->last_login = date('d.m.Y H:i');
-            $user->status = "online";
-            R::store($user);
+            $last_login = date('d.m.Y H:i');
+            $status = "online";
+            $sql = "INSERT INTO users (login, status) VALUES ('$last_login', '$status' )";
+            if(mysqli_query($conn, $sql)){
+                echo "Records inserted successfully.";
+            } else{
+                echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
+            }
             $_SESSION['logged_user'] = $user;
             exit("<meta http-equiv='refresh' content='0; url= /index.php'>");
         }  else {
