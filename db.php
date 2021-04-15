@@ -26,5 +26,6 @@ $conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $c
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
+echo "Connection seccfull";
 session_start();
 ?>

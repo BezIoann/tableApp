@@ -21,16 +21,18 @@ if(isset($data['do_signup'])) {
     if (!preg_match("/[0-9a-z_]+@[0-9a-z_^\.]+\.[a-z]{2,3}/i", $data['email'])) {
         $errors[] = 'E-mail entered incorrectly!';
     }
-    $login = $data['login'];
-    $email = $data['email'];
-    if(mysqli_num_rows(mysqli_query("SELECT * FROM users WHERE login = '$login'"))> 0) {
-        $errors[] = "A user with this login exists!";
-    }
-    if(mysqli_num_rows(mysqli_query("SELECT * FROM users WHERE email = '$email'")) > 0) {
-        $errors[] = "A user with this Email exists!";
-    }
+//    $login = $data['login'];
+//    $email = $data['email'];
+//    if(mysqli_num_rows(mysqli_query("SELECT * FROM users WHERE login = '$login'"))> 0) {
+//        $errors[] = "A user with this login exists!";
+//    }
+//    if(mysqli_num_rows(mysqli_query("SELECT * FROM users WHERE email = '$email'")) > 0) {
+//        $errors[] = "A user with this Email exists!";
+//    }
 
     if(empty($errors)) {
+        $login = $data['login'];
+        $email = $data['email'];
         $reg_date = date('d.m.Y H:i');
         $last_login = date('d.m.Y H:i');
         $password = password_hash($data['password'], PASSWORD_DEFAULT);
