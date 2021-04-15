@@ -27,13 +27,8 @@ $cleardb_password = $cleardb_url["pass"];
 $cleardb_db = substr($cleardb_url["path"],1);
 $active_group = 'default';
 $query_builder = TRUE;
-try{
-    $db = new PDO("mysql:host=eu-cdbr-west-01.cleardb.com; dbname=heroku_ab4b3ff47a92985",
-        "b11148a0327740", "d98dda68");
-    R::setup( $db );
-    if(!R::testConnection()) die('No DB connection!');
-} catch(PDOException $e){
-    echo $e->getmessage();
-}
+$conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+
+    R::setup( $conn );
 
 ?>

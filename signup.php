@@ -27,7 +27,7 @@ if(isset($data['do_signup'])) {
         $errors[] = "A user with this Email exists!";
     }
     if(empty($errors)) {
-        $user = R::dispense('users1');
+        $user = R::dispense('users');
         $user->login = $data['login'];
         $user->email = $data['email'];
         $user->reg_date = date('d.m.Y H:i');
