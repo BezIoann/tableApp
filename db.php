@@ -18,8 +18,7 @@ if (!isset($_SESSION['count'])) {
 $_SESSION['count']++;
 
 echo "Hello #" . $_SESSION['count'];
-session_start();
-$cleardb_url = parse_url(getenv("mysql://b11148a0327740:d98dda68@eu-cdbr-west-01"));
+$cleardb_url = parse_url(getenv("mysql://b11148a0327740:d98dda68@eu-cdbr-west-01.cleardb.com/heroku_ab4b3ff47a92985?reconnect=true"));
 $cleardb_server = $cleardb_url["host"];
 $cleardb_username = $cleardb_url["user"];
 $cleardb_password = $cleardb_url["pass"];
@@ -28,8 +27,7 @@ $active_group = 'default';
 $query_builder = TRUE;
 require_once "vendor/autoload.php";
 use \RedBeanPHP\R;
-R::setup( "mysql:host=eu-cdbr-west-01.cleardb.com; dbname=heroku_ab4b3ff47a92985",
-    "b11148a0327740", "d98dda68@" );
+R::setup( "mysql:host=$cleardb_server; dbname=$cleardb_db",
+    "$cleardb_username", "$cleardb_password" );
 if(!R::testConnection()) die('No DB connection!');
-
 ?>
