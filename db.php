@@ -1,5 +1,6 @@
 <?php
 require_once "vendor/autoload.php";
+require_once "libs/rb-mysql.php";
 use \RedBeanPHP\R;
 ini_set('session.save_handler', 'memcached');
 ini_set('session.save_path', getenv('MEMCACHIER_SERVERS'));
