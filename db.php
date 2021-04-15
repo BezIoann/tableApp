@@ -1,6 +1,6 @@
 <?php
 require_once "vendor/autoload.php";
-//use \RedBeanPHP\R;
+use \RedBeanPHP\R;
 //require_once "libs/rb-mysql.php"
 ini_set('session.save_handler', 'memcached');
 ini_set('session.save_path', getenv('MEMCACHIER_SERVERS'));
@@ -24,7 +24,12 @@ $active_group = 'default';
 $query_builder = TRUE;
 // Connect to DB
 $conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
-
+R::setup( "mysql:host=$cleardb_server;dbname=$cleardb_db",
+    "$cleardb_username", "$cleardb_password" );
+$isConnected = R::testConnection();
+if (!$isConnected) {
+    die("Connection failed: " );
+}
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
