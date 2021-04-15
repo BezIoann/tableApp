@@ -11,7 +11,7 @@ if(version_compare(phpversion('memcached'), '3', '>=')) {
 ini_set('memcached.sess_sasl_username', getenv('MEMCACHIER_USERNAME'));
 ini_set('memcached.sess_sasl_password', getenv('MEMCACHIER_PASSWORD'));
 require_once "vendor/autoload.php";
-
+use \RedBeanPHP\R;
 $cleardb_url = parse_url(getenv("mysql://b11148a0327740:d98dda68@eu-cdbr-west-01.cleardb.com/heroku_ab4b3ff47a92985?reconnect=true"));
 $cleardb_server = $cleardb_url["host"];
 $cleardb_username = $cleardb_url["user"];

@@ -1,0 +1,6 @@
+{
+      "require": {
+        "ext-memcached": "*",
+        "gabordemooij/redbean": "dev-master"
+      }
+    }
