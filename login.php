@@ -1,39 +1,7 @@
-<?php
-require "db.php";
-require __DIR__ . '/header.php';
-$data = $_POST;
-if(isset($data['do_login'])) {
-    $errors = array();
-    $login = $data['login'];
-    $sql = "SELECT * from users where login = '$login'";
-    $result = mysqli_query($sql);
-
-    $user = mysqli_fetch_assoc($result);
-    if($user) {
-        if ($user["status"] == "blocked") {
-            $errors[] = "Oops ... you're blocked ((";
-        }else if(password_verify($data['password'], $user["password"])) {
-            $last_login = date('d.m.Y H:i');
-            $status = "online";
-            $sql = "INSERT INTO users (last_login, status) VALUES ('$last_login', '$status' )";
-            if(mysqli_query($conn, $sql)){
-                echo "Records inserted successfully.";
-            } else{
-                echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
-            }
-            $_SESSION['logged_user'] = $user;
-            exit("<meta http-equiv='refresh' content='0; url= /index.php'>");
-        }  else {
-            $errors[] = 'Password entered incorrectly!';
-        }
-    } else {
-        $errors[] = 'User with this username was not found!';
-    }
-    if(!empty($errors)) {
-        echo '<div style="color: red; ">' . array_shift($errors). '</div><hr>';
-    }
-}
-?>
+    <?php
+    require "db.php";
+    require __DIR__ . '/header.php';
+    ?>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-6">
@@ -53,4 +21,39 @@ if(isset($data['do_login'])) {
             </div>
         </div>
     </div>
+    <?php
+
+    $data = $_POST;
+    if(isset($data['do_login'])) {
+        $errors = array();
+        $login = $data['login'];
+        $sql = "SELECT * from users where login = '$login'";
+        $result = mysqli_query($sql);
+
+        $user = mysqli_fetch_assoc($result);
+        if($user) {
+            if ($user["status"] == "blocked") {
+                $errors[] = "Oops ... you're blocked ((";
+            }else if(password_verify($data['password'], $user["password"])) {
+                $last_login = date('d.m.Y H:i');
+                $status = "online";
+                $sql = "INSERT INTO users (last_login, status) VALUES ('$last_login', '$status' )";
+                if(mysqli_query($conn, $sql)){
+                    echo "Records inserted successfully.";
+                } else{
+                    echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
+                }
+                $_SESSION['logged_user'] = $user;
+                exit("<meta http-equiv='refresh' content='0; url= /index.php'>");
+            }  else {
+                $errors[] = 'Password entered incorrectly!';
+            }
+        } else {
+            $errors[] = 'User with this username was not found!';
+        }
+        if(!empty($errors)) {
+            echo '<div style="color: red; ">' . array_shift($errors). '</div><hr>';
+        }
+    }
+    ?>
 <?php require __DIR__ . '/footer.php'; ?>
