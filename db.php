@@ -13,9 +13,6 @@ if(version_compare(phpversion('memcached'), '3', '>=')) {
 }
 ini_set('memcached.sess_sasl_username', getenv('MEMCACHIER_USERNAME'));
 ini_set('memcached.sess_sasl_password', getenv('MEMCACHIER_PASSWORD'));
-
-session_start();
-echo "Hello #" . $_SESSION['count'];
 $cleardb_url = parse_url(getenv("mysql://b11148a0327740:d98dda68@eu-cdbr-west-01.cleardb.com/heroku_ab4b3ff47a92985?reconnect=true"));
 $cleardb_server = $cleardb_url["host"];
 $cleardb_username = $cleardb_url["user"];
@@ -24,4 +21,10 @@ $cleardb_db = substr($cleardb_url["path"],1);
 $active_group = 'default';
 $query_builder = TRUE;
 $conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+echo "Connected successfully";
+session_start();
+echo "Hello #" . $_SESSION['count'];
 ?>
