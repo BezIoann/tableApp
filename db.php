@@ -1,7 +1,5 @@
 <?php
 require_once "vendor/autoload.php";
-use \RedBeanPHP\R;
-//require_once "libs/rb-mysql.php"
 ini_set('session.save_handler', 'memcached');
 ini_set('session.save_path', getenv('MEMCACHIER_SERVERS'));
 if(version_compare(phpversion('memcached'), '3', '>=')) {
@@ -31,7 +29,5 @@ $conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $c
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-echo "Connected successfully";
 session_start();
-echo "Hello #" . $_SESSION['count'];
 ?>

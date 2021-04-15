@@ -22,25 +22,13 @@ if(isset($data['do_signup'])) {
     if (!preg_match("/[0-9a-z_]+@[0-9a-z_^\.]+\.[a-z]{2,3}/i", $data['email'])) {
         $errors[] = 'E-mail entered incorrectly!';
     }
-    if(mysqli_num_rows(mysqli_query("SELECT * FROM users WHERE login = $login"))> 0) {
+    if(mysqli_num_rows(mysqli_query("SELECT * FROM users WHERE login = '$login'"))> 0) {
         $errors[] = "A user with this login exists!";
     }
-    if(mysqli_num_rows(mysqli_query("SELECT * FROM users WHERE email = $email")) > 0) {
+    if(mysqli_num_rows(mysqli_query("SELECT * FROM users WHERE email = '$email'")) > 0) {
         $errors[] = "A user with this Email exists!";
     }
-//    if(empty($errors)) {
-//        $user = R::dispense('users');
-//        $user->login = $data['login'];
-//        $user->email = $data['email'];
-//        $user->reg_date = date('d.m.Y H:i');
-//        $user->last_login = date('d.m.Y H:i');
-//        $user->password = password_hash($data['password'], PASSWORD_DEFAULT);
-//        R::store($user);
-//
-//        echo '<div class="alert alert-success" role="alert">You are registered successfully! <a href="login.php">log in</a>.</div><hr>';
-//    } else {
-//        echo '<div class="alert alert-danger" role="alert">' . array_shift($errors). '</div><hr>';
-//    }
+
     if(empty($errors)) {
         $login = $data['login'];
         $email = $data['email'];
