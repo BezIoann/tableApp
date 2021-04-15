@@ -4,7 +4,6 @@ require __DIR__ . '/header.php';
 ?>
 <body>
 <?php if(isset($_SESSION['logged_user'])) : ;
-
     $users = R::findAll('users');
 ?>
 <div class="container-fluid">
