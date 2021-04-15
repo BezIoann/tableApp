@@ -32,9 +32,9 @@ if (!$isConnected) {
 } else {
     echo "Connected successfully";
 }
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
+//if (!$conn) {
+//    die("Connection failed: " . mysqli_connect_error());
+//}
 echo "Connected successfully";
 session_start();
 echo "Hello #" . $_SESSION['count'];
