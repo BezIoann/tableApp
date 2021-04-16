@@ -102,7 +102,7 @@ require __DIR__ . '/header.php';
                     $uid = $_POST['userID'];
                     $sql = "UPDATE users SET status = 'blocked'  WHERE id='$uid'";
                     $result = mysqli_query($conn,$sql);
-                    if ($uid == $_SESSION['logged_user']->id) {
+                    if ($uid == $_SESSION['logged_user']['id']) {
                         unset($_SESSION['logged_user']);
                         exit("<meta http-equiv='refresh' content='0; url= /index.php'>");
                     }
@@ -129,7 +129,7 @@ require __DIR__ . '/header.php';
                     $uid = $_POST['userID'];
                     $sql = "DELETE FROM users WHERE id='$uid'";
                     $result = mysqli_query($conn,$sql);
-                    if ($uid == $_SESSION['logged_user']->id) {
+                    if ($uid == $_SESSION['logged_user']['id']) {
                         unset($_SESSION['logged_user']);
                         exit("<meta http-equiv='refresh' content='0; url= /index.php'>");
                     }
@@ -154,7 +154,7 @@ require __DIR__ . '/header.php';
                     $uid = $_POST['userID'];
                     $sql = "UPDATE users SET status = 'offline'  WHERE id='$uid'";
                     $result = mysqli_query($conn,$sql);
-                    if ($uid == $_SESSION['logged_user']->id) {
+                    if ($uid == $_SESSION['logged_user']['id']) {
                         $sql = "UPDATE users SET status = 'online'  WHERE id='$uid'";
                         $result = mysqli_query($conn,$sql);
                     }
