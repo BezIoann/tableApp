@@ -30,6 +30,7 @@
         $sql = "SELECT * from users where login = '$login'";
         $result = mysqli_query($sql);
         $user = mysqli_fetch_assoc($result);
+        echo $user;
         if($user) {
             if ($user["status"] == "blocked") {
                 $errors[] = "Oops ... you're blocked ((";
