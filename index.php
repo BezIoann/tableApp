@@ -101,9 +101,8 @@ require __DIR__ . '/header.php';
                 <?php
                 if(isset($_POST['userID']) && isset($_POST['block'])) {
                     $uid = $_POST['userID'];
-                    $user = R::findOne('users', 'id = ?', array($uid));
-                    $user->status = "blocked";
-                    R::store($user);
+                    $sql = "UPDATE users SET status = 'blocked'  WHERE id='$uid'";
+                    $result = mysqli_query($conn,$sql);
                     if ($uid == $_SESSION['logged_user']->id) {
                         unset($_SESSION['logged_user']);
                         exit("<meta http-equiv='refresh' content='0; url= /index.php'>");
@@ -129,8 +128,8 @@ require __DIR__ . '/header.php';
                 <?php
                 if(isset($_POST['userID']) && isset($_POST['delUs'])) {
                     $uid = $_POST['userID'];
-                    $deletegame = R::exec('DELETE FROM `users` WHERE id = ? ', [$uid]);
-                    R::trash($deletegame); //удаляем запись с id=2 из таблицы category
+                    $sql = "DELETE FROM users WHERE id='$uid'";
+                    $result = mysqli_query($conn,$sql);
                     if ($uid == $_SESSION['logged_user']->id) {
                         unset($_SESSION['logged_user']);
                         exit("<meta http-equiv='refresh' content='0; url= /index.php'>");
@@ -154,12 +153,12 @@ require __DIR__ . '/header.php';
                 <?php
                 if(isset($_POST['userID']) && isset($_POST['unlock'])) {
                     $uid = $_POST['userID'];
-                    $user = R::findOne('users', 'id = ?', array($uid));
-                    $user->status = "offline";
+                    $sql = "UPDATE users SET status = 'offline'  WHERE id='$uid'";
+                    $result = mysqli_query($conn,$sql);
                     if ($uid == $_SESSION['logged_user']->id) {
-                        $user->status = "online";
+                        $sql = "UPDATE users SET status = 'online'  WHERE id='$uid'";
+                        $result = mysqli_query($conn,$sql);
                     }
-                    R::store($user);
                 }?>
             }
         });
