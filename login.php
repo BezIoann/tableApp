@@ -15,6 +15,7 @@
             if ($user["status"] == "blocked") {
                 $errors[] = "Oops ... you're blocked ((";
             } else if (password_verify($data['password'], $user["password"])) {
+                date_default_timezone_set('UTC');
                 $last_login = date('d.m.Y H:i');
                 $status = "online";
                 $sql = "UPDATE users SET status = '$status'  WHERE login='$login'";
@@ -46,7 +47,7 @@
                         <label class="form-label">Password</label>
                         <input type="password" class="form-control" name="password" id="pass" placeholder="Enter password" required>
                     </div>
-                    <button class="btn btn-primary" name="do_login" type="submit">Авторизоваться</button>
+                    <button class="btn btn-primary" name="do_login" type="submit">Login</button>
                 </form>
                 <br>
                 <p>If you are not registered yet, then click <a href="signup.php">there</a>.</p>
