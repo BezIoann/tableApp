@@ -15,8 +15,8 @@
         $result = mysqli_query($sql);
         $user = mysqli_fetch_assoc($result);
         echo 'lol3';
-
-        var_dump($user);
+        echo var_dump($user);
+        echo $user;
         if ($user) {
             echo "lol4";
             if ($user["status"] == "blocked") {
