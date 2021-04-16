@@ -18,12 +18,16 @@
 
         var_dump($user);
         if ($user) {
+            echo "lol4";
             if ($user["status"] == "blocked") {
                 $errors[] = "Oops ... you're blocked ((";
             } else if (password_verify($data['password'], $user["password"])) {
+                echo "lol5";
                 $last_login = date('d.m.Y H:i');
                 $status = "online";
+                echo "lol6";
                 $sql = "UPDATE users SET last_login='$last_login' and status = '$status'  WHERE login='$login'";
+                echo "lol7";
                 if (mysqli_query($conn, $sql)) {
                     echo "Records inserted successfully.";
                 } else {
