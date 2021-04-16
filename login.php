@@ -23,7 +23,6 @@
             } else if (password_verify($data['password'], $user["password"])) {
                 $last_login = date('d.m.Y H:i');
                 $status = "online";
-                "UPDATE users SET last_login='$last_login' and status = '$status'  WHERE login='$login'";
                 $sql = "UPDATE users SET last_login='$last_login' and status = '$status'  WHERE login='$login'";
                 if (mysqli_query($conn, $sql)) {
                     echo "Records inserted successfully.";
@@ -31,6 +30,7 @@
                     echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
                 }
                 $_SESSION['logged_user'] = $user;
+                echo 'lol5';
                 exit("<meta http-equiv='refresh' content='0; url= /index.php'>");
             } else {
                 $errors[] = 'Password entered incorrectly!';
