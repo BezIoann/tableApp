@@ -55,7 +55,7 @@ require __DIR__ . '/header.php';
                         </label>
                     </div>
                 </td>
-                <td class="user_id"><?php echo $user->id?></td>
+                <td class="user_id"><?php echo $user["id"]?></td>
                 <td><?php echo $user['login']?></td>
                 <td><?php echo $user['email']?></td>
                 <td><?php echo $user['reg_date']?></td>
