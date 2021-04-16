@@ -4,7 +4,6 @@
 
 
     $data = $_POST;
-    echo 'lol';
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors = array();
         $login = $data['login'];

@@ -8,9 +8,13 @@ if(isset($data['do_signup'])) {
 
     if(trim($data['login']) == '') {
         $errors[] = "Enter login!";
+    } else {
+        $login1 = $data['login'];
     }
     if(trim($data['email']) == '') {
         $errors[] = "Enter Email!";
+    } else {
+        $email1 = $data['email'];
     }
     if($data['password'] == '') {
         $errors[] = "Enter password!";
@@ -21,12 +25,12 @@ if(isset($data['do_signup'])) {
     if (!preg_match("/[0-9a-z_]+@[0-9a-z_^\.]+\.[a-z]{2,3}/i", $data['email'])) {
         $errors[] = 'E-mail entered incorrectly!';
     }
-    $login = $data['login'];
-    $email = $data['email'];
-    if(mysqli_num_rows(mysqli_query("SELECT * FROM users WHERE login = '$login'"))> 0) {
+
+
+    if(mysqli_num_rows(mysqli_query("SELECT * FROM users WHERE login = '$login1'"))> 0) {
         $errors[] = "A user with this login exists!";
     }
-    if(mysqli_num_rows(mysqli_query("SELECT * FROM users WHERE email = '$email'")) > 0) {
+    if(mysqli_num_rows(mysqli_query("SELECT * FROM users WHERE email = '$email1'")) > 0) {
         $errors[] = "A user with this Email exists!";
     }
 
