@@ -17,7 +17,7 @@
         echo 'lol3';
         echo var_dump($user);
         echo $user;
-        if ($result) {
+        if (true) {
             echo "lol4";
             if ($user["status"] == "blocked") {
                 $errors[] = "Oops ... you're blocked ((";
