@@ -4,7 +4,7 @@ require __DIR__ . '/header.php';
 ?>
 <body>
 <?php if(isset($_SESSION['logged_user'])) : ;
-    $users = R::findAll('users');
+//    $users = R::findAll('users');
 ?>
 <div class="container-fluid">
     <div class="tool-bar">
@@ -42,7 +42,8 @@ require __DIR__ . '/header.php';
         </thead>
         <tbody>
         <?php
-        foreach ($users as $user): ?>
+        $result = $conn->query('SELECT * FROM `table_name`'); // запрос на выборку
+        while($user = $result->fetch_assoc()): ?>
             <tr class="row-table">
                 <td scope="row">
 
@@ -53,14 +54,14 @@ require __DIR__ . '/header.php';
                     </div>
                 </td>
                 <td class="user_id"><?php echo $user->id?></td>
-                <td><?php echo $user->login?></td>
-                <td><?php echo $user->email?></td>
-                <td><?php echo $user->reg_date?></td>
-                <td><?php echo $user->last_login?></td>
-                <td><?php echo $user->status ?></td>
+                <td><?php echo $user['login']?></td>
+                <td><?php echo $user['email']?></td>
+                <td><?php echo $user['reg_date']?></td>
+                <td><?php echo $user['last_login']?></td>
+                <td><?php echo $user['status'] ?></td>
             </tr>
         <?php
-        endforeach;
+        endwhile;
         ?>
         </tbody>
     </table>

@@ -36,7 +36,8 @@
             }else if(password_verify($data['password'], $user["password"])) {
                 $last_login = date('d.m.Y H:i');
                 $status = "online";
-                $sql = "INSERT INTO users (last_login, status) VALUES ('$last_login', '$status' )";
+                "UPDATE users SET last_login='$last_login' and status = '$status'  WHERE login='$login'";
+                $sql = "UPDATE users SET last_login='$last_login' and status = '$status'  WHERE login='$login'";
                 if(mysqli_query($conn, $sql)){
                     echo "Records inserted successfully.";
                 } else{
