@@ -34,8 +34,7 @@ if(isset($data['do_signup'])) {
     if(empty($errors)) {
         $login = $data['login'];
         $email = $data['email'];
-        date_default_timezone_set('UTC');
-        $reg_date = date('d.m.Y H:i');
+        $reg_date = date('Y-m-d H:i:s');
         echo $reg_date;
         $last_login = date('d.m.Y H:i');
         $password = password_hash($data['password'], PASSWORD_DEFAULT);
