@@ -72,7 +72,7 @@ require __DIR__ . '/header.php';
 <?php else : ?>
 <div class="container">
     <div class="row reg-log">
-        <a class="btn btn-primary log" href="login.php">Авторизоваться</a><br>
+        <a class="btn btn-primary log" href="login.php">Авторизоваться</a>
         <a class="btn btn-primary reg" href="signup.php">Регистрация</a>
     </div>
 </div>
