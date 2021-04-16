@@ -42,8 +42,10 @@ require __DIR__ . '/header.php';
         </thead>
         <tbody>
         <?php
-        $result = $conn->query('SELECT * FROM `table_name`'); // запрос на выборку
-        while($user = $result->fetch_assoc()): ?>
+        $sql = "SELECT * FROM users ";
+        $result = mysqli_query($conn,$sql);
+        $user = mysqli_fetch_assoc($result);
+        while($user = mysqli_fetch_assoc($result)): ?>
             <tr class="row-table">
                 <td scope="row">
 

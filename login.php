@@ -6,15 +6,11 @@
     $data = $_POST;
     echo 'lol';
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        echo 'lol1';
         $errors = array();
         $login = $data['login'];
-        echo 'lol2';
         $sql = "SELECT * FROM users WHERE login = '$login'";
-        echo 'lol3';
         $result = mysqli_query($conn,$sql);
         $user = mysqli_fetch_assoc($result);
-        echo 'lol3';
         if ($user) {
             echo "lol4";
             if ($user["status"] == "blocked") {
