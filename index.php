@@ -111,7 +111,7 @@ require __DIR__ . '/header.php';
                 ?>
             }
         });
-        setInterval('location.reload()', 300);
+        // setInterval('location.reload()', 300);
     };
 
     document.getElementById('delete').onclick = function() {
@@ -137,7 +137,7 @@ require __DIR__ . '/header.php';
                 }?>
             }
         });
-        setInterval('location.reload()', 300);
+        // setInterval('location.reload()', 300);
     };
     document.getElementById('unlock').onclick = function() {
         let rows = document.querySelectorAll(".row-table");
@@ -162,7 +162,7 @@ require __DIR__ . '/header.php';
                 }?>
             }
         });
-        setInterval('location.reload()', 300);
+        // setInterval('location.reload()', 300);
     };
 
     let tr = document.querySelectorAll(".row-table"),
