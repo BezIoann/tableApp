@@ -4,6 +4,7 @@
 
 
     $data = $_POST;
+    echo 'lol';
     if (isset($data['do_login'])) {
         $errors = array();
         $login = $data['login'];
