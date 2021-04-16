@@ -4,7 +4,6 @@ require __DIR__ . '/header.php';
 ?>
 <body>
 <?php if(isset($_SESSION['logged_user'])) : ;
-//    $users = R::findAll('users');
 ?>
 <div class="container-fluid">
     <div class="tool-bar">
@@ -111,7 +110,7 @@ require __DIR__ . '/header.php';
                 ?>
             }
         });
-        setInterval('location.reload()', 300);
+        setInterval('location.reload()', 500);
     };
 
     document.getElementById('delete').onclick = function() {
@@ -137,7 +136,7 @@ require __DIR__ . '/header.php';
                 }?>
             }
         });
-        setInterval('location.reload()', 300);
+        setInterval('location.reload()', 500);
     };
     document.getElementById('unlock').onclick = function() {
         let rows = document.querySelectorAll(".row-table");
@@ -162,7 +161,7 @@ require __DIR__ . '/header.php';
                 }?>
             }
         });
-        setInterval('location.reload()', 300);
+        setInterval('location.reload()', 500);
     };
 
     let tr = document.querySelectorAll(".row-table"),
