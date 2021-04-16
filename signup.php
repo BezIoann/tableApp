@@ -37,7 +37,7 @@ if(isset($data['do_signup'])) {
         $last_login = date('Y-m-d H:i:s');
         $reg_date = $last_login;
         $password = password_hash($data['password'], PASSWORD_DEFAULT);
-        $sql = "INSERT INTO users (login, password, reg_date,  last_login, email) VALUES ('$login','$password', '$reg_date', '$last_login', '$email' )";
+        $sql = "INSERT INTO users (login, password, reg_date,  last_login, email, status) VALUES ('$login','$password', '$reg_date', '$last_login', '$email', 'offline' )";
         mysqli_query($conn, $sql);
         echo '<div class="alert alert-success" role="alert">You are registered successfully! <a href="login.php">log in</a>.</div><hr>';
     } else {
