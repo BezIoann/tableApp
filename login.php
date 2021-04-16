@@ -15,7 +15,7 @@
                 $errors[] = "Oops ... you're blocked ((";
             } else if (password_verify($data['password'], $user["password"])) {
                 date_default_timezone_set('UTC');
-                $last_login = date('d.m.Y H:i');
+                $last_login = date('Y-m-d H:i:s');
                 $status = "online";
                 $sql = "UPDATE users SET status = '$status'  WHERE login='$login'";
                 mysqli_query($conn, $sql);
