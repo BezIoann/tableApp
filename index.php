@@ -104,14 +104,14 @@ require __DIR__ . '/header.php';
                     $sql = "UPDATE users SET status = 'blocked'  WHERE id='$uid'";
                     $result = mysqli_query($conn,$sql);
                     if ($uid == $_SESSION['logged_user']->id) {
-//                        unset($_SESSION['logged_user']);
-//                        exit("<meta http-equiv='refresh' content='0; url= /index.php'>");
+                        unset($_SESSION['logged_user']);
+                        exit("<meta http-equiv='refresh' content='0; url= /index.php'>");
                     }
                 }
                 ?>
             }
         });
-        // setInterval('location.reload()', 300);
+        setInterval('location.reload()', 300);
     };
 
     document.getElementById('delete').onclick = function() {
@@ -131,13 +131,13 @@ require __DIR__ . '/header.php';
                     $sql = "DELETE FROM users WHERE id='$uid'";
                     $result = mysqli_query($conn,$sql);
                     if ($uid == $_SESSION['logged_user']->id) {
-//                        unset($_SESSION['logged_user']);
-//                        exit("<meta http-equiv='refresh' content='0; url= /index.php'>");
+                        unset($_SESSION['logged_user']);
+                        exit("<meta http-equiv='refresh' content='0; url= /index.php'>");
                     }
                 }?>
             }
         });
-        // setInterval('location.reload()', 300);
+        setInterval('location.reload()', 300);
     };
     document.getElementById('unlock').onclick = function() {
         let rows = document.querySelectorAll(".row-table");
@@ -162,7 +162,7 @@ require __DIR__ . '/header.php';
                 }?>
             }
         });
-        // setInterval('location.reload()', 300);
+        setInterval('location.reload()', 300);
     };
 
     let tr = document.querySelectorAll(".row-table"),
