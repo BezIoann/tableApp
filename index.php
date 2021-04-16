@@ -105,7 +105,7 @@ require __DIR__ . '/header.php';
                     $result = mysqli_query($conn,$sql);
                     if ($uid == $_SESSION['logged_user']->id) {
                         unset($_SESSION['logged_user']);
-                        exit("<meta http-equiv='refresh' content='0; url= /index.php'>");
+//                        exit("<meta http-equiv='refresh' content='0; url= /index.php'>");
                     }
                 }
                 ?>
@@ -132,7 +132,7 @@ require __DIR__ . '/header.php';
                     $result = mysqli_query($conn,$sql);
                     if ($uid == $_SESSION['logged_user']->id) {
                         unset($_SESSION['logged_user']);
-                        exit("<meta http-equiv='refresh' content='0; url= /index.php'>");
+//                        exit("<meta http-equiv='refresh' content='0; url= /index.php'>");
                     }
                 }?>
             }
