@@ -9,6 +9,9 @@
     margin-top: 40vh;
     justify-content: center;
 }
+.reg {
+    padding-left: 20px;
+}
 .reg-log a {
     max-width: 300px;
 }
