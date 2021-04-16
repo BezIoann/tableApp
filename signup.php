@@ -36,6 +36,7 @@ if(isset($data['do_signup'])) {
         $email = $data['email'];
         date_default_timezone_set('UTC');
         $reg_date = date('d.m.Y H:i');
+        echo $reg_date;
         $last_login = date('d.m.Y H:i');
         $password = password_hash($data['password'], PASSWORD_DEFAULT);
         $sql = "INSERT INTO users (login, password, reg_date, last_login, email) VALUES ('$login','$password', '$reg_date', '$last_login', '$email' )";
