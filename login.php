@@ -5,7 +5,7 @@
 
     $data = $_POST;
     echo 'lol';
-    if (isset($data['do_login'])) {
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors = array();
         $login = $data['login'];
         $sql = "SELECT * from users where login = '$login'";
