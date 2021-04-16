@@ -10,14 +10,14 @@
         $errors = array();
         $login = $data['login'];
         echo 'lol2';
-        $sql = "SELECT * from users where login = '$login'";
+        $sql = "SELECT * FROM users WHERE login = '$login'";
         echo 'lol3';
         $result = mysqli_query($sql);
         $user = mysqli_fetch_assoc($result);
         echo 'lol3';
         echo var_dump($user);
         echo $user;
-        if ($user) {
+        if ($result) {
             echo "lol4";
             if ($user["status"] == "blocked") {
                 $errors[] = "Oops ... you're blocked ((";
